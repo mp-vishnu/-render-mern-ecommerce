@@ -1,0 +1,22 @@
+# Ignore node_modules for both backend and frontend
+/backend/node_modules/
+/frontend/node_modules/
+
+# Ignore root-level node_modules
+/node_modules
+
+# Ignore environment-specific files (e.g., .env files)
+.env
+
+# Ignore build or compiled files (adjust paths as needed)
+/backend/build/
+/frontend/build/
+
+# Ignore logs and temporary files
+logs/
+temp/
+
+
+# Local development environment
+.env
+
