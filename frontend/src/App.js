@@ -30,6 +30,9 @@ import AlertTemplate from 'react-alert-template-basic';
 import StripeCheckout from './pages/StripeCheckout';
 import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentFail from './pages/PaymentFail';
+import Payment from './pages/Payment';
+import Success from './pages/Success';
+import Cancel from './pages/Cancel';
 const options = {
   timeout: 5000,
   position: positions.BOTTOM_LEFT,
@@ -74,10 +77,11 @@ function App() {
     <Route exact path="/orders" element={     <Protected><UserOrdersPage/></Protected>} />
     <Route exact path="/profile" element={ <Protected> <UserProfilePage/></Protected>} />
     <Route exact path="/stripe-checkout/" element={  <Protected> <StripeCheckout/></Protected>} />
+    <Route exact path="/razor-checkout/" element={  <Protected> <Payment/></Protected>} />
     <Route exact path="/logout" element={  <Logout/>} />
     <Route exact path="/forgot-password" element={  <ForgotPasswordPage/>} />
-    <Route exact path="/success" element={  <PaymentSuccess/>} />
-    <Route exact path="/cancel" element={  <PaymentFail/>} />
+    <Route exact path="/success" element={  <Protected><Success/></Protected>} />
+    <Route exact path="/cancel" element={  <Cancel/>} />
     <Route exact path="*" element={  <PageNotFound/>} />
     </Routes>
   </>

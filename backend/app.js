@@ -28,6 +28,7 @@ const usersRouter = require('./routes/Users');
 const authRouter = require('./routes/Auth');
 const cartRouter = require('./routes/Cart');
 const ordersRouter = require('./routes/Order');
+const razorPayment=require('./routes/Rpayment');
 //const checkPayment=require('./routes/Payment');
 
 
@@ -43,6 +44,14 @@ app.post("/create-payment-intent", async (req, res) => {
   const paymentIntent = await stripe.paymentIntents.create({
     amount: totalAmount*100, // for decimal compensation
     currency: "inr",
+    name:'jenny rosen',
+    address:{
+      line1:"g10townsend st",
+      postal_code:'98140',
+      city:"san fransisco",
+      state:"CA",
+      country:"US"
+    },
     automatic_payment_methods: {
       enabled: true,
     },
@@ -100,6 +109,7 @@ app.use('/users', isAuth(),usersRouter.router);
 app.use('/auth', authRouter.router);
 app.use('/cart', isAuth(),cartRouter.router);
 app.use('/orders',isAuth(),ordersRouter.router);
+app.use('/payment',razorPayment.router);
 //app.use('/',paymentRouter);
 //app.use('/',checkPayment.router);
 

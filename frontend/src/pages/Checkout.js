@@ -89,7 +89,7 @@ function Checkout() {
       )}
       {currentOrder &&  currentOrder.paymentMethod ==='card' && (
         <Navigate
-          to={`/stripe-checkout/`}
+          to={`/razor-checkout/`}
           replace={true}
         ></Navigate>
       )}

@@ -14,6 +14,7 @@ exports.fetchOrdersByUser = async (req, res) => {
   exports.createOrder = async (req, res) => {
     const order = new Order(req.body);
     try {
+      console.log("order---",order);
       const doc = await order.save();
       res.status(201).json(doc);
     } catch (err) {
