@@ -29,6 +29,7 @@ const authRouter = require('./routes/Auth');
 const cartRouter = require('./routes/Cart');
 const ordersRouter = require('./routes/Order');
 const razorPayment=require('./routes/Rpayment');
+const forgotpassword=require('./routes/Mail');
 //const checkPayment=require('./routes/Payment');
 
 
@@ -99,7 +100,6 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
 
 
 
-
 // main().catch((err) => console.log(err));
 app.use("/",basic);
 app.use("/products",isAuth(),productsRouter.router);
@@ -110,6 +110,8 @@ app.use('/auth', authRouter.router);
 app.use('/cart', isAuth(),cartRouter.router);
 app.use('/orders',isAuth(),ordersRouter.router);
 app.use('/payment',razorPayment.router);
+app.use('/',forgotpassword.router);
+
 //app.use('/',paymentRouter);
 //app.use('/',checkPayment.router);
 

@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-
+import { useDispatch } from 'react-redux';
+import { sendMailAsync } from '../../user/userSlice';
 export default function ForgotPassword() {
+  const dispatch=useDispatch();
   const {
     register,
     handleSubmit,
@@ -29,6 +31,10 @@ export default function ForgotPassword() {
             noValidate
             onSubmit={handleSubmit((data) => {
               console.log(data);
+              dispatch(
+                sendMailAsync({data})
+              );
+
               // TODO : implementation on backend with email
             })}
             className="space-y-6"

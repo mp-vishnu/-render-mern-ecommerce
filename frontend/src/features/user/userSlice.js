@@ -3,11 +3,14 @@ import {
   fetchLoggedInUserOrders,
   updateUser,
   fetchLoggedInUser,
+  sendMail,
+  resetPassword
 } from './userAPI';
 
 const initialState = {
   status: 'idle',
-  userInfo: null, // this info will be used in case of detailed user info, while auth will
+  userInfo: null,
+  // this info will be used in case of detailed user info, while auth will
   // only be used for loggedInUser id etc checks
 };
 
@@ -38,6 +41,34 @@ export const updateUserAsync = createAsyncThunk(
     return response.data;
   }
 );
+
+export const  sendMailAsync = createAsyncThunk(
+  'user/sendMail',
+  async (data) => {
+    try {
+      const response = await sendMail(data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+);
+
+export const  resetPasswordAsync= createAsyncThunk(
+  'user/sendMail',
+  async (data) => {
+    console.log("dsts inside resetasync ",data)
+    try {
+      const response = await resetPassword(data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+);
+
 
 export const userSlice = createSlice({
   name: 'user',
@@ -70,16 +101,17 @@ export const userSlice = createSlice({
         state.status = 'idle';
         // this info can be different or more from logged-in User info
         state.userInfo = action.payload;
-      });
+      })
+      .addCase(sendMailAsync.fulfilled, (state, action) => {
+       console.log("fullfilled sendMailAsync payload");
+      })
   },
 });
 
 // TODO: change orders and address to be independent of user;
 export const selectUserOrders = (state) => state.user.userInfo.orders;
-
 export const selectUserInfo = (state) => state.user.userInfo;
 export const selectUserInfoStatus = (state) => state.user.status;
 
-// export const { increment } = userSlice.actions;
 
 export default userSlice.reducer;

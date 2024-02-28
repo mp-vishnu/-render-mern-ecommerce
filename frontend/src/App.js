@@ -33,6 +33,7 @@ import PaymentFail from './pages/PaymentFail';
 import Payment from './pages/Payment';
 import Success from './pages/Success';
 import Cancel from './pages/Cancel';
+import ResetPassword from './pages/ResetPassword';
 const options = {
   timeout: 5000,
   position: positions.BOTTOM_LEFT,
@@ -82,6 +83,7 @@ function App() {
     <Route exact path="/forgot-password" element={  <ForgotPasswordPage/>} />
     <Route exact path="/success" element={  <Protected><Success/></Protected>} />
     <Route exact path="/cancel" element={  <Cancel/>} />
+    <Route exact path="/reset-password/:id/:token" element={  <ResetPassword/>} />
     <Route exact path="*" element={  <PageNotFound/>} />
     </Routes>
   </>

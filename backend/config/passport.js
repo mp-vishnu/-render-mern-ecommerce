@@ -8,7 +8,7 @@ const {sanitizeUser,cookieExtractor}=require('../middleware/auth');
 const jwt = require('jsonwebtoken');
 const JwtStrategy = require('passport-jwt').Strategy;
 //const ExtractJwt = require('passport-jwt').ExtractJwt;
-const SECRET_KEY = 'SECRET_KEY';
+const SECRET_KEY = 'SECRET_KY';
 // JWT options
 const opts = {};
 //opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
@@ -39,7 +39,7 @@ passport.use(
             return done(null, false, { message: 'invalid credentials' });
           }
           const token = jwt.sign(sanitizeUser(user), SECRET_KEY);
-          done(null, {id:user.id,role:user.role}); // this lines sends to serializer
+          done(null, {id:user.id,role:user.role,token:token}); // this lines sends to serializer
         }
       );
     } catch (err) {
@@ -55,6 +55,7 @@ passport.use(
       try {
         const user = await User.findById(jwt_payload.id);
         if (user) {
+          console.log("jwt  ",user);
           return done(null, sanitizeUser(user)); // this calls serializer
         } else {
           return done(null, false);
