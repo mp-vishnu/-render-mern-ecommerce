@@ -9,7 +9,7 @@ exports.rorders = async (req, res) => {
           key_id: process.env.KEY_ID,
           key_secret: process.env.KEY_SECRET,
       });
-      //console.log("instance---",instance);
+      ////console.log("instance---",instance);
 
 
       const options = {
@@ -22,14 +22,14 @@ exports.rorders = async (req, res) => {
 
       instance.orders.create(options, (error, order) => {
           if (error) {
-              console.log(error);
+              //console.log(error);
               return res.status(500).json({ message: "Something Went Wrong!" });
           }
           res.status(200).json({ data: order });
       });
   } catch (error) {
       res.status(500).json({ message: "Internal Server Error!" });
-      console.log(error);
+      //console.log(error);
   }
 };
 
@@ -52,7 +52,7 @@ exports.rverify=async (req, res) => {
       }
   } catch (error) {
       res.status(500).json({ message: "Internal Server Error!" });
-      console.log(error);
+      //console.log(error);
   }
 };
 

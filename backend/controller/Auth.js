@@ -16,7 +16,7 @@ exports.createUser = async (req, res) => {
       async function (err, hashedPassword) {
         const user = new User({ ...req.body, password: hashedPassword, salt });
         const doc = await user.save();
-        console.log("hi");
+     //   //console.log("hi");
         req.login(sanitizeUser(doc), (err) => {
           // this also calls serializer and adds to session
           if (err) {
@@ -41,7 +41,7 @@ exports.createUser = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
-  console.log("req.user ---",req.user);
+ // //console.log("req.user ---",req.user);
  // const token = jwt.sign(sanitizeUser(doc), SECRET_KEY);
   res
   .cookie("jwt", req.user.token, {

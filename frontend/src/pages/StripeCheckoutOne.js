@@ -29,14 +29,14 @@ export default function StripeCheckout() {
             sessionId:session.id
         });
         if(result.error){
-            console.log(result.error);
+            //console.log(result.error);
         }
     }
 
     
   
   useEffect(() => {
-    console.log("---currentOrder---",currentOrder);
+    //console.log("---currentOrder---",currentOrder);
    makePayment();
   }, []);
 

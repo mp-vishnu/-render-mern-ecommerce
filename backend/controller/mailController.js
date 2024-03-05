@@ -4,13 +4,15 @@ const crypto = require("crypto");
 const { sanitizeUser } = require("../middleware/auth");
 const SECRET_KEY = "SECRET_KEY";
 const jwt = require("jsonwebtoken");
+
 exports.sendMail = async (req, res) => {
   const email  = req.body;
-  console.log("email in mailcontroller before sending mail ",email.data.email);
+ // //console.log("email in mailcontroller before sending mail ",email.data.email);
   try {
       // Find user by email
       const user = await User.findOne({ email:email.data.email });
-      console.log("user",user);
+      console.log("user !!! ",user);
+   //   //console.log("user",user);
       // If user not found, send response
       if (!user) {
           return res.status(404).json({
@@ -30,14 +32,14 @@ exports.sendMail = async (req, res) => {
           subject: 'Reset Password',
           message
       });
-      console.log(`Email sent to ${user.email} successfully`);
+      ////console.log(`Email sent to ${user.email} successfully`);
       // Send success response
       res.status(200).json({
           success: true,
           message: `Email sent to ${user.email} successfully`,
       });
   } catch (error) {
-      console.log(error);
+     // //console.log(error);
       res.status(500).json({
           success: false,
           message: 'Failed to send email',
@@ -48,7 +50,7 @@ exports.sendMail = async (req, res) => {
 exports.resetPassword = async (req, res) => {
   const { id, token } = req.params;
   const { newPassword } = req.body;
- console.log("id token password ",id,token,newPassword)
+ ////console.log("id token password ",id,token,newPassword)
 
  try {
   // Verify token
@@ -64,7 +66,7 @@ exports.resetPassword = async (req, res) => {
 
     // Find user by ID
     const user = await User.findById(id);
-    console.log("user before change",user);
+    ////console.log("user before change",user);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -72,7 +74,7 @@ exports.resetPassword = async (req, res) => {
 
     // Hash the new password
     //const salt = crypto.randomBytes(16);
-    console.log("user.salt!!!!",user,user.salt);
+    ////console.log("user.salt!!!!",user,user.salt);
     const salt=user.salt;
     crypto.pbkdf2(
       newPassword,
@@ -93,8 +95,10 @@ exports.resetPassword = async (req, res) => {
     );
   });
 } catch (error) {
-  console.log(error);
+  ////console.log(error);
   res.status(500).json({ message: 'Internal Server Error' });
 }
 
 };
+
+

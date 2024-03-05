@@ -48,9 +48,9 @@ function App() {
   },[dispatch])
 
   useEffect(()=>{
-    console.log("--app user--");
+    //console.log("--app user--");
     if(user){
-      console.log("--app user--",user);
+      //console.log("--app user--",user);
       dispatch(fetchItemsByUserIdAsync())
       dispatch(fetchLoggedInUserAsync())
     }

@@ -30,6 +30,7 @@ const cartRouter = require('./routes/Cart');
 const ordersRouter = require('./routes/Order');
 const razorPayment=require('./routes/Rpayment');
 const forgotpassword=require('./routes/Mail');
+const sendInvoice = require('./routes/Order');
 //const checkPayment=require('./routes/Payment');
 
 
@@ -38,7 +39,7 @@ const stripe = require("stripe")('sk_test_51Ol7OkSFOvFxVpY9ie7lKzfXpyPzT5dFnu0HX
 
 
 app.post("/create-payment-intent", async (req, res) => {
-  console.log("stripe---------",stripe);
+ // //console.log("stripe---------",stripe);
   const { totalAmount } = req.body;
 
   // Create a PaymentIntent with the order amount and currency
@@ -57,7 +58,7 @@ app.post("/create-payment-intent", async (req, res) => {
       enabled: true,
     },
   });
-console.log("paymentIntent!!----",paymentIntent);
+////console.log("paymentIntent!!----",paymentIntent);
   res.send({
     clientSecret: paymentIntent.client_secret,
   });
@@ -85,12 +86,12 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
   switch (event.type) {
     case 'payment_intent.succeeded':
       const paymentIntentSucceeded = event.data.object;
-      console.log({paymentIntentSucceeded})
+      ////console.log({paymentIntentSucceeded})
       // Then define and call a function to handle the event payment_intent.succeeded
       break;
     // ... handle other event types
     default:
-      console.log(`Unhandled event type ${event.type}`);
+     // //console.log(`Unhandled event type ${event.type}`);
   }
 
   // Return a 200 response to acknowledge receipt of the event
@@ -100,7 +101,7 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
 
 
 
-// main().catch((err) => console.log(err));
+// main().catch((err) => //console.log(err));
 app.use("/",basic);
 app.use("/products",isAuth(),productsRouter.router);
 app.use('/categories',isAuth(), categoriesRouter.router);
@@ -111,7 +112,7 @@ app.use('/cart', isAuth(),cartRouter.router);
 app.use('/orders',isAuth(),ordersRouter.router);
 app.use('/payment',razorPayment.router);
 app.use('/',forgotpassword.router);
-
+app.use('/',isAuth(),sendInvoice.router);
 //app.use('/',paymentRouter);
 //app.use('/',checkPayment.router);
 

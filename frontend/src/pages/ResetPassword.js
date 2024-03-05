@@ -20,7 +20,7 @@ export default function ResetPassword() {
       alert('Passwords do not match');
       return;
     }
-   console.log("id token newpassword defore async ",id,token,newPassword)
+   //console.log("id token newpassword defore async ",id,token,newPassword)
     dispatch(resetPasswordAsync({ id,token,newPassword }));
     navigate('/login');
   };

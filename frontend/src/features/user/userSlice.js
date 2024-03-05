@@ -49,7 +49,7 @@ export const  sendMailAsync = createAsyncThunk(
       const response = await sendMail(data);
       return response.data;
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       return error;
     }
   }
@@ -58,12 +58,12 @@ export const  sendMailAsync = createAsyncThunk(
 export const  resetPasswordAsync= createAsyncThunk(
   'user/sendMail',
   async (data) => {
-    console.log("dsts inside resetasync ",data)
+    //console.log("dsts inside resetasync ",data)
     try {
       const response = await resetPassword(data);
       return response.data;
     } catch (error) {
-      console.log(error);
+      //console.log(error);
       return error;
     }
   }
@@ -103,7 +103,7 @@ export const userSlice = createSlice({
         state.userInfo = action.payload;
       })
       .addCase(sendMailAsync.fulfilled, (state, action) => {
-       console.log("fullfilled sendMailAsync payload");
+       //console.log("fullfilled sendMailAsync payload");
       })
   },
 });

@@ -55,7 +55,7 @@ export function sendMail(data) {
 }
 
 export function resetPassword({id,token,newPassword}) {
-  console.log("inside resetpassword is token password ",id,token,newPassword)
+  //console.log("inside resetpassword is token password ",id,token,newPassword)
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch(`http://localhost:8080/reset-password/${id}/${token}/`, {
@@ -65,7 +65,7 @@ export function resetPassword({id,token,newPassword}) {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log(" done changing password ",data);
+        //console.log(" done changing password ",data);
         resolve(data);
       } else {
         const error = await response.text();

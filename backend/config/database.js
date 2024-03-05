@@ -4,15 +4,15 @@ const mongoose = require("mongoose");
 const connectDatabase = () => {
  mongoose
    .connect(process.env.DB_URI, {
-     useNewUrlParser: true,
-     useUnifiedTopology: true,
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
     // useCreateIndex: true,
    })
    .then((data) => {// if connection is done
      console.log(`Mongodb connected with server: ${data.connection.host}`);
    })
    .catch((err)=>{ // if any error is occured
-     console.log(err);
+     //console.log(err);
    });
 };
 

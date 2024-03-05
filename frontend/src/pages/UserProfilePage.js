@@ -10,6 +10,7 @@ function UserProfilePage() {
       </NavBar>
     </div>
   );
+  
 }
 
 export default UserProfilePage;

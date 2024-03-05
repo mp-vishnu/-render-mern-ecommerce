@@ -20,20 +20,20 @@ export default function CheckoutForm() {
       return;
     }
 
-    console.log("stripe----",stripe);
+    //console.log("stripe----",stripe);
     const searchParams = new URLSearchParams(window.location.search);
   const clientSecret = searchParams.get("payment_intent_client_secret");
 
-  console.log("searchParams------",searchParams);
-  console.log("clientSecret------",clientSecret);
+  //console.log("searchParams------",searchParams);
+  //console.log("clientSecret------",clientSecret);
 
     if (!clientSecret) {
-        console.log("no clientsecret");
+        //console.log("no clientsecret");
       return;
     }
 
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-      console.log("paymentIntent.status",paymentIntent.status);
+      //console.log("paymentIntent.status",paymentIntent.status);
       switch (paymentIntent.status) {
         case "succeeded":
           setMessage("Payment succeeded!");
@@ -61,7 +61,7 @@ export default function CheckoutForm() {
     }
   
     setIsLoading(true);
-    console.log("---handle submit --- message",currentOrder.id,"---",message);
+    //console.log("---handle submit --- message",currentOrder.id,"---",message);
     try {
       const { error } = await stripe.confirmPayment({
         elements,

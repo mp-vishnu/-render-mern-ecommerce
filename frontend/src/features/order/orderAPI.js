@@ -42,3 +42,11 @@ export function fetchAllOrders(sort, pagination) {
     resolve({ data: { orders: data, totalOrders: +totalOrders } });
   });
 }
+
+export function sendInvoice() {
+  return new Promise(async (resolve) => {
+    const response = await fetch('http://localhost:8080/invoice');
+    const data = await response.json();
+    resolve({ data });
+  });
+}

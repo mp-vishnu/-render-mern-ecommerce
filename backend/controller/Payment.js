@@ -3,7 +3,7 @@ const stripe=require("stripe")("sk_test_51Ol7OkSFOvFxVpY9ie7lKzfXpyPzT5dFnu0HXk6
   exports.checkPayment = async (req, res) => {
   
     const {totalAmount,totalItems}=req.body;
-    console.log("inside checkPayment---",totalAmount);
+    //console.log("inside checkPayment---",totalAmount);
 
     const lineItems= [
       {

@@ -10,7 +10,7 @@ function PaymentPage() {
 
   const initPayment = (data) => {
     const options = {
-      key: 'rzp_test_YajafUP0r1GoV7',
+      key: 'rzp_test_6bDLoV1GtMjgV0',
       amount: data.amount,
       currency: data.currency,
       description: 'Test Transaction',
@@ -26,11 +26,11 @@ function PaymentPage() {
             body: JSON.stringify(res),
           });
           const responseData = await response.json();
-          console.log('data!!!!!!', responseData);
+          //console.log('data!!!!!!', responseData);
           // Redirect to success page on successful payment
           navigate(`/order-success/${currentOrder.id}`); // Replace "/success" with the path to your custom success page
         } catch (error) {
-          console.log(error);
+          //console.log(error);
         }
       },
       theme: {
@@ -53,10 +53,10 @@ function PaymentPage() {
           body: JSON.stringify({ amount: currentOrder.totalAmount }),
         });
         const data = await response.json();
-        console.log('data-payment/orders', data);
+        //console.log('data-payment/orders', data);
         initPayment(data.data);
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     };
 

@@ -48,19 +48,19 @@ function Checkout() {
   };
 
   const handleAddress = (e) => {
-    console.log("adress----");
-    console.log(e.target.value);
+    //console.log("adress----");
+    //console.log(e.target.value);
     setSelectedAddress(user.addresses[e.target.value]);
   };
 
   const handlePayment = (e) => {
-    console.log(e.target.value);
+    //console.log(e.target.value);
     setPaymentMethod(e.target.value);
   };
 
   const makePayment=async()=>{
     const stripe=await loadStripe("pk_test_51Ol7OkSFOvFxVpY926O5rioEFGpMPJwdQUtwtewKdpzYuusA3fod5bWTzhae5zICmsL6oUk7yaSYmRLdATX8ulmM00f7Ir3K6Z");
-    console.log("makePayment()---",currentOrder);
+    //console.log("makePayment()---",currentOrder);
     const body={ totalAmount: currentOrder.totalAmount,totalItems:currentOrder.totalItems }
     const headers={
         "Content-Type":"application/json"
@@ -77,7 +77,7 @@ function Checkout() {
             sessionId:session.id
         });
         if(result.error){
-            console.log(result.error);
+            //console.log(result.error);
         }
     }
 
@@ -127,7 +127,7 @@ function Checkout() {
               className="bg-white px-5 py-12 mt-12"
               noValidate
               onSubmit={handleSubmit((data) => {
-                console.log(data);
+                //console.log(data);
                 dispatch(
                   updateUserAsync({
                     ...user,

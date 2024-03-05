@@ -5,7 +5,7 @@ const Success = () => {
   
   useEffect(() => {
     const timeout = setTimeout(() => {
-      console.log("moving__!!!");
+      //console.log("moving__!!!");
       // Navigate to the root page after 4 seconds
       navigate('/', { replace: true });
     }, 4000);
