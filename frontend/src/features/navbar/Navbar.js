@@ -103,6 +103,7 @@ function NavBar({ children }) {
                               src={profilepic}
                               alt=""
                             />
+                            
                           </Menu.Button>
                         </div>
                         <Transition

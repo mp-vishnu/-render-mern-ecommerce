@@ -2,7 +2,6 @@ const { Order } = require("../model/Order");
 const { User } = require('../model/User');
 const {Cart}=require("../model/Cart");
 const sendEmail = require("../utils/mailConfig");
-const pdfService = require('../service/pdf-service'); 
 //onst {invoiceTemplate}=require('../utils/invoice');
 const {invoiceTemplate}=require('../utils/invoiceTemplate')
 exports.fetchOrdersByUser = async (req, res) => {
