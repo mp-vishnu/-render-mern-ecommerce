@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { selectItems } from '../cart/cartSlice';
 import { selectLoggedInUser } from '../auth/authSlice';
 import {selectUserInfo} from "../user/userSlice";
+import profilepic from "../../img/profile.png";
 
 const navigation = [
   { name: 'Products', link: '/', user: true },
@@ -98,7 +99,8 @@ function NavBar({ children }) {
                             <span className="sr-only">Open user menu</span>
                             <img
                               className="h-8 w-8 rounded-full"
-                              src={userInfo.imageUrl}
+                              // src={userInfo.imageUrl}
+                              src={profilepic}
                               alt=""
                             />
                           </Menu.Button>
