@@ -10,9 +10,6 @@
 /backend/config/config.env
 
 # Ignore build or compiled files (adjust paths as needed)
-/backend/build/
-/frontend/build/
-
 # Ignore logs and temporary files
 logs/
 temp/
