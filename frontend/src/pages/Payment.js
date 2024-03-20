@@ -17,7 +17,7 @@ function PaymentPage() {
       order_id: data.id,
       handler: async (res) => {
         try {
-          const verifyUrl = 'http://localhost:8080/payment/verify';
+          const verifyUrl = '/payment/verify';
           const response = await fetch(verifyUrl, {
             method: 'POST',
             headers: {
@@ -44,7 +44,7 @@ function PaymentPage() {
   useEffect(() => {
     const handlePayment = async () => {
       try {
-        const orderUrl = 'http://localhost:8080/payment/orders';
+        const orderUrl = '/payment/orders';
         const response = await fetch(orderUrl, {
           method: 'POST',
           headers: {

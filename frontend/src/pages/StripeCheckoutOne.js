@@ -17,7 +17,7 @@ export default function StripeCheckout() {
     const headers={
         "Content-Type":"application/json"
     }
-        const response = await fetch("http://localhost:8080/create-payment-intent",{
+        const response = await fetch("/create-payment-intent",{
             method:"POST",
             headers:headers,
             body:JSON.stringify(body)

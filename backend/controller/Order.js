@@ -97,7 +97,7 @@ exports.fetchOrdersByUser = async (req, res) => {
   
        const lastOrder = await Order.findOne().sort({ _id: -1 });    
        //console.log("lastOrder",lastOrder)
-      const htmlContent=invoiceTemplate(lastOrder,id);
+      const htmlContent=invoiceTemplate(lastOrder);
      const order={
       email:"abc",
       name:"abc"

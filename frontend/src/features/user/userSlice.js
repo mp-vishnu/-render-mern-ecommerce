@@ -10,6 +10,7 @@ import {
 const initialState = {
   status: 'idle',
   userInfo: null,
+  loaded:false
   // this info will be used in case of detailed user info, while auth will
   // only be used for loggedInUser id etc checks
 };
@@ -84,7 +85,7 @@ export const userSlice = createSlice({
       .addCase(fetchLoggedInUserOrderAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.userInfo.orders = action.payload;
-
+     
       })
       .addCase(updateUserAsync.pending, (state) => {
         state.status = 'loading';
@@ -101,6 +102,7 @@ export const userSlice = createSlice({
         state.status = 'idle';
         // this info can be different or more from logged-in User info
         state.userInfo = action.payload;
+        state.loaded=true;
       })
       .addCase(sendMailAsync.fulfilled, (state, action) => {
        //console.log("fullfilled sendMailAsync payload");
@@ -112,6 +114,7 @@ export const userSlice = createSlice({
 export const selectUserOrders = (state) => state.user.userInfo.orders;
 export const selectUserInfo = (state) => state.user.userInfo;
 export const selectUserInfoStatus = (state) => state.user.status;
+export const selectLoaded=(state)=>state.user.loaded;
 
 
 export default userSlice.reducer;

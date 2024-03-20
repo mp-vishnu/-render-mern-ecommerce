@@ -1,4 +1,4 @@
-const invoiceTemplate = (doc,id) => {
+const invoiceTemplate = (doc) => {
     return `<!DOCTYPE html>
     <html>
     <head>
@@ -35,9 +35,10 @@ const invoiceTemplate = (doc,id) => {
         <div class="container">
             <h1>Order Details</h1>
             <div class="details">
-                <p><span>User ID:</span> ${id}</p>
+                <p><span>Order ID:</span> ${doc.id}</p>
                 <p><span>Total Amount:</span> ${doc.totalAmount}</p>
                 <p><span>Total Items:</span> ${doc.totalItems}</p>
+                <p><span>Payment Method:</span> ${doc.paymentMethod}</p>
                 <h2>Items:</h2>
                 <ul>
                     ${doc.items.map(item => `

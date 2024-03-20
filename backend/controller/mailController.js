@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 
 exports.sendMail = async (req, res) => {
   const email  = req.body;
+  console.log("sendMail email---",email);
  // //console.log("email in mailcontroller before sending mail ",email.data.email);
   try {
       // Find user by email

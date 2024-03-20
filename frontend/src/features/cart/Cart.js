@@ -18,7 +18,7 @@ export default function Cart() {
 
   const items = useSelector(selectItems);
   const status = useSelector(selectCartStatus);
-  const cartLoaded = useSelector(selectCartLoaded)
+  const cartLoaded = useSelector(selectCartLoaded);
   const [openModal, setOpenModal] = useState(null);
 
   const totalAmount = items.reduce(

@@ -3,10 +3,11 @@ const app=express(); // creating an instance
 const passport = require('./config/passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const path = require('path'); 
 const isAuth=require('./middleware/auth').isAuth;
 //const paymentRouter=require("./config/payment");
 app.use(express.json()); //req response format
-app.use(express.static('build'));
+app.use(express.static(path.resolve(__dirname,'build')));
 app.use(cookieParser());
 app.use(session({
     secret: 'keyboard cat',
@@ -32,8 +33,6 @@ const razorPayment=require('./routes/Rpayment');
 const forgotpassword=require('./routes/Mail');
 const sendInvoice = require('./routes/Order');
 //const checkPayment=require('./routes/Payment');
-
-
 // This is your test secret API key.
 const stripe = require("stripe")('sk_test_51Ol7OkSFOvFxVpY9ie7lKzfXpyPzT5dFnu0HXk6gq12M6BV2jZTaIxp9CwUqQwJshC0xrnBeEn3ofNnNBMtyhtes00UvtHhMjY');
 
@@ -111,8 +110,8 @@ app.use('/auth', authRouter.router);
 app.use('/cart', isAuth(),cartRouter.router);
 app.use('/orders',isAuth(),ordersRouter.router);
 app.use('/payment',razorPayment.router);
-app.use('/',forgotpassword.router);
-app.use('/',isAuth(),sendInvoice.router);
+app.use('/reset',forgotpassword.router);
+app.use('/send',isAuth(),sendInvoice.router);
 //app.use('/',paymentRouter);
 //app.use('/',checkPayment.router);
 
