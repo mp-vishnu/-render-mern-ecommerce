@@ -35,7 +35,7 @@ const forgotpassword=require('./routes/Mail');
 const sendInvoice = require('./routes/Order');
 //const checkPayment=require('./routes/Payment');
 // This is your test secret API key.
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
 });
 
