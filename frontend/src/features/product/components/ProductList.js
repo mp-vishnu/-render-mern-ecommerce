@@ -11,6 +11,7 @@ import {
   selectProductListStatus,
   selectTotalItems,
 } from '../productSlice';
+import { discountedPrice } from '../../../app/constants';
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import {
@@ -441,12 +442,12 @@ function ProductGrid({ products, status }) {
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm block font-medium text-gray-900">
-                      ${product.discountPrice}
-                    </p>
                     <p className="text-sm block line-through font-medium text-gray-400">
                       ${product.price}
                     </p>
+                    <p className="text-1xl tracking-tight text-gray-900">
+                ${discountedPrice(product)}
+              </p>
                   </div>
                 </div>
                 {product.deleted && (

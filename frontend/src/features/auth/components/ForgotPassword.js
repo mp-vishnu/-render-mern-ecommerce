@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link,useNavigate} from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { sendMailAsync } from '../../user/userSlice';
 export default function ForgotPassword() {
+  const navigate=useNavigate();
   const dispatch=useDispatch();
   const {
     register,
@@ -31,9 +32,13 @@ export default function ForgotPassword() {
             noValidate
             onSubmit={handleSubmit((data) => {
               console.log(data);
-              dispatch(
-                sendMailAsync({data})
-              );
+              dispatch(sendMailAsync({ data }))
+              .then(() => {
+                navigate("/login");
+              })
+              .catch((error) => {
+                console.error("Error sending email:", error);
+              });
               console.log("mail entered---",data);
 
               // TODO : implementation on backend with email

@@ -22,8 +22,19 @@ exports.sendMail = async (req, res) => {
           });
       }
       const token = jwt.sign(sanitizeUser(user), SECRET_KEY,{expiresIn:"1d"});
-      const resetPasswordUrl = `http://localhost:3000/reset-password/${user.id}/${token}`;  
-
+      // const resetPasswordUrl = `http://localhost:3000/reset-password/${user.id}/${token}`;  
+      let baseUrl = '';
+      if (window.location.origin) {
+          // Use the window.location.origin if available (modern browsers)
+          baseUrl = window.location.origin;
+      } else {
+          // Construct the base URL using window.location.host and window.location.protocol
+          baseUrl = `${window.location.protocol}//${window.location.host}`;
+      }
+      
+      // Use the baseUrl to construct the resetPasswordUrl
+      const resetPasswordUrl = `${baseUrl}/reset-password/${user.id}/${token}`;
+      
 
       const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
 
