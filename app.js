@@ -8,7 +8,7 @@ const isAuth=require('./middleware/auth').isAuth;
 //const paymentRouter=require("./config/payment");
 app.use(express.json()); //req response format
 // app.use(express.static(path.resolve(__dirname,'build')));
-app.use(express.static(path.join(__dirname, "frontend", "build")));
+app.use(express.static(path.join(__dirname, "frontend/build")));
 app.use(cookieParser());
 app.use(session({
     secret: 'keyboard cat',
@@ -35,8 +35,8 @@ const forgotpassword=require('./routes/Mail');
 const sendInvoice = require('./routes/Order');
 //const checkPayment=require('./routes/Payment');
 // This is your test secret API key.
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
 });
 
 // main().catch((err) => //console.log(err));
