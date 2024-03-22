@@ -24,8 +24,10 @@ exports.sendMail = async (req, res) => {
       const token = jwt.sign(sanitizeUser(user), SECRET_KEY,{expiresIn:"1d"});
 
      //const resetPasswordUrl = `http://localhost:3000/reset-password/${user.id}/${token}`;  
-     const resetPasswordUrl = `${process.env.BASE_URL}/reset-password/${user.id}/${token}`;  
-     //const resetPasswordUrl = `${req.protocol}://${req.get('host')}/reset-password/${user.id}/${token}`;
+     //const resetPasswordUrl = `${process.env.BASE_URL}/reset-password/${user.id}/${token}`;  
+     const resetPasswordUrl = `${req.protocol}://${req.get('host')}/reset-password/${user.id}/${token}`;
+     console.log("resetp  ",resetPasswordUrl);
+    
 
       // let baseUrl = '';
       // if (window.location.origin) {
